@@ -28,13 +28,13 @@ app.post('/extract-details', async (req, res) => {
       },
       {
         role: 'user',
-        content: `Please analyze well and extract all the customer details (name, phone number, email, expected destination, expected date, budget, and expected return date) from the following text. Return the data as a JSON object with the following keys: customerName for name, pNumber for phone number, email for email, hopeToGo for expected destination, date for expected date, budget for budget, and return for expected return date. If only the number of days for the trip is given, calculate the expected return date: \n\n${text}`
+        content: `Please analyze well and extract all the customer details (name, phone number, email, expected destination, expected date, budget, and expected return date) from the following text.Only Return the data as a JSON object with the following keys: customerName for name, pNumber for phone number, email for email, hopeToGo for expected destination, date for expected date, budget for budget, and return for expected return date.only send the json file so your answer should begin with "{". If only the number of days for the trip is given, calculate the expected return date: \n\n${text}`
       }
     ];
 
     const completion = await openai.chat.completions.create({
       messages,
-      model: 'gpt-4o',
+      model: 'gpt-4o-mini-2024-07-18',
     });
 
 
